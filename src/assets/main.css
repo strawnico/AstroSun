@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background: rgb(255, 255, 255);
+}
+
+.wpp {
+  background-image: url(./Wpp.png);
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+}
+
+@layer components {
+  .inputs {
+    @apply w-full bg-transparent text-white text-sm font-normal outline-none font-poppins
+  }
+  .inputs::placeholder{
+    @apply font-poppins font-light text-phol text-sm opacity-60
+  }
+  .divInput {
+    @apply mt-4 pb-14 border-2 border-transparent bg-roxaozao rounded-lg px-4 w-[22rem] h-14
+  }
+  .divInput:focus-within {
+    @apply transition border-2 border-solid border-roxinho bg-roxao;
+  }
+  .btn {
+    @apply bg-roxinho text-white font-semibold rounded-3xl w-[22rem] mt-10 py-2
+  }
+
+  .divMininput {
+    @apply mt-4 pb-14 border-2 border-transparent bg-roxaozao rounded-lg px-4 w-[10.6rem] h-14
+  }
+
+
+
+  
+  
+}
