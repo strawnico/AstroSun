@@ -1,5 +1,8 @@
 <script setup>
 import { ref } from "vue";
+import { defineEmits } from 'vue'
+
+const emit = defineEmits(['update:modelValue']) 
 
 const props = defineProps([
   "title",
@@ -7,7 +10,14 @@ const props = defineProps([
   "type",
   "qtdMinima",
   "icon",
+  "modelValue",
 ]);
+
+const handleInput = (e) => {
+  emit("update:modelValue", e.target.value)
+}
+
+const content = ref('');
 
 const passwordFieldType = ref(props.type);
 const switchVisibility = () =>
@@ -25,11 +35,12 @@ const switchVisibility = () =>
   <div class="divInput relative">
     <p class="text-indiv font-semibold text-xs pt-2">{{ title }}</p>
     <input
+      @input="handleInput"
+      v-model="content"
       class="inputs"
       :placeholder="placeholder"
       :type="passwordFieldType"
       :minlength="qtdMinima"
-      v-model="password"
     />
     <div>
       <span
