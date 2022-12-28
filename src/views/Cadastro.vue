@@ -2,26 +2,46 @@
 import Input from "../components/Input.vue";
 import Button from "../components/Button.vue";
 import Mininput from "../components/Mininput.vue";
-import { ref } from 'vue'
+import { ref } from "vue";
 import { auth } from "../../auth/firebase";
-import {createUserWithEmailAndPassword} from 'firebase/auth'
-console.log(auth)
-const senha = ref('');
-const email = ref('');
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { db } from "../../auth/firebase.js";
+import { collection, addDoc } from "firebase/firestore";
+import { useToast } from "vue-toastification";
 
+const toast = useToast();
+
+const addUser = async (uid) => {
+    try {
+      const docRef = await addDoc(collection(db, "users"), {
+        uid: uid,
+        name: name.value,
+        secondName: secondName.value,
+      });
+      toast.success('deu certo tmj')
+    } catch (error) {
+      toast.error('puts deu errado')
+    }
+  };
+
+const senha = ref("");
+const email = ref("");
+const name = ref ("");
+const secondName = ref ("");
 
 const click = () => {
   createUserWithEmailAndPassword(auth, email.value, senha.value)
-  .then((userCredential) => {
-    const user = userCredential.user;
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-  });
-}
-
-
+    .then((userCredential) => {
+      const user = userCredential.user;
+      console.log(user)
+      addUser(user.uid)
+      // window.location.pathname = "/hero";
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
+};
 </script>
 
 <template>
@@ -43,11 +63,11 @@ const click = () => {
         </span>
       </div>
       <div class="flex">
-        <Mininput title="Nome" placeholder="ex: Nicole" />
-        <Mininput title="Sobrenome" placeholder="ex: Silva" />
+        <Mininput v-model="name" title="Nome" placeholder="ex: Nicole" />
+        <Mininput v-model="secondName" title="Sobrenome" placeholder="ex: Silva" />
       </div>
       <Input
-       v-model="email"
+        v-model="email"
         title="Email"
         placeholder="digiteseuemail@email.com"
         type="email"

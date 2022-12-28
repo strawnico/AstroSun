@@ -1,6 +1,29 @@
 <script setup>
 import Input from "../components/Input.vue";
 import Button from "../components/Button.vue";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../auth/firebase";
+import { ref } from "vue";
+import { useToast } from "vue-toastification";
+
+ const toast = useToast();
+
+const senha = ref("");
+const email = ref("");
+
+const sign = () => {
+  signInWithEmailAndPassword(auth, email.value, senha.value)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      window.location.pathname = "/hero";
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      toast.error('puts deu errado')
+    });
+};
 </script>
 
 <template>
@@ -24,18 +47,20 @@ import Button from "../components/Button.vue";
         </span>
       </div>
       <Input
+        v-model="email"
         title="Email"
         placeholder="digiteseuemail@email.com"
         type="email"
       />
       <Input
+        v-model="senha"
         title="Senha"
         placeholder="sua senha aqui"
         type="password"
         qtd-minima="6"
         :icon="true"
       />
-      <Button function-btn="Entrar" />
+      <Button @click="sign" function-btn="Entrar" />
     </div>
     <div class="text-white"></div>
   </main>

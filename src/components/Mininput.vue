@@ -1,6 +1,13 @@
 <script setup>
-
 import { ref } from "vue";
+
+const emit = defineEmits(["update:modelValue"]);
+
+const handleInput = (e) => {
+  emit("update:modelValue", e.target.value);
+};
+
+const content = ref("");
 
 const props = defineProps([
   "title",
@@ -8,6 +15,7 @@ const props = defineProps([
   "type",
   "qtdMinima",
   "icon",
+  "modelValue",
 ]);
 
 const passwordFieldType = ref(props.type);
@@ -27,6 +35,7 @@ const switchVisibility = () =>
   <div class="divMininput relative mr-3">
     <p class="text-indiv font-semibold text-xs pt-2">{{ title }}</p>
     <input
+      @input="handleInput"
       class="inputs"
       :placeholder="placeholder"
       :type="passwordFieldType"
@@ -38,7 +47,9 @@ const switchVisibility = () =>
         @click="switchVisibility()"
         v-if="icon"
         class="cursor-pointer absolute right-4 top-4 text-roxinho material-icons"
-        >{{ passwordFieldType == "password" ? "visibility" : "visibility_off" }}</span
+        >{{
+          passwordFieldType == "password" ? "visibility" : "visibility_off"
+        }}</span
       >
     </div>
   </div>
