@@ -25,9 +25,10 @@ function pushWithQuery(query) {
     <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content flex flex-col bg-[#292039]">
       <label
+        v-if="route.name != 'cadastro' && route.name != 'login'"
         for="my-drawer-2"
-        class="cursor-pointer lg:hidden bg-[#292039]"
-        ><span class=" mt-3 ml-3 material-icons">menu</span></label
+        class="cursor-pointer lg:hidden bg-[#292039] max-w-fit"
+        ><span class="mt-3 ml-3 material-icons">menu</span></label
       >
       <slot></slot>
     </div>
@@ -48,10 +49,34 @@ function pushWithQuery(query) {
           </div>
           <Search />
           <div class="mt-8">
-            <li><a class="active:bg-purple-800">Home</a></li>
-            <li><a class="active:bg-purple-800">Notifications</a></li>
-            <li><a class="active:bg-purple-800">Messages</a></li>
-            <li><a class="active:bg-purple-800">Profile</a></li>
+            <li>
+              <a
+                href="/home"
+                class="active:bg-purple-800 active:text-white hover:text-purple-500"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="/notification"
+                class="active:bg-purple-800 active:text-white hover:text-purple-500"
+                >Notifications</a
+              >
+            </li>
+            <li>
+              <a
+                href="/messages"
+                class="active:bg-purple-800 active:text-white hover:text-purple-500"
+                >Messages</a
+              >
+            </li>
+            <li>
+              <a
+                href="/profile"
+                class="active:bg-purple-800 active:text-white hover:text-purple-500"
+                >Profile</a
+              >
+            </li>
           </div>
         </div>
       </ul>
