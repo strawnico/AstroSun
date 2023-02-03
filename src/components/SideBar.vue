@@ -52,13 +52,14 @@ function pushWithQuery(query) {
             <li>
               <a
                 href="/home"
-                class="active:bg-purple-800 active:text-white hover:text-purple-500"
+                :class="route.name == 'home' ? 'active:bg-purple-800 active:text-white hover:text-purple-500 !text-white' : 'active:bg-purple-800 active:text-white hover:text-purple-500' "
                 >Home</a
               >
             </li>
             <li>
               <a
                 href="/notification"
+                :class="route.name == 'notification' ? 'active:bg-purple-800 active:text-white hover:text-purple-500 !text-white' : 'active:bg-purple-800 active:text-white hover:text-purple-500' "
                 class="active:bg-purple-800 active:text-white hover:text-purple-500"
                 >Notifications</a
               >
@@ -66,6 +67,7 @@ function pushWithQuery(query) {
             <li>
               <a
                 href="/messages"
+                :class="route.name == 'messages' ? 'active:bg-purple-800 active:text-white hover:text-purple-500 !text-white' : 'active:bg-purple-800 active:text-white hover:text-purple-500' "
                 class="active:bg-purple-800 active:text-white hover:text-purple-500"
                 >Messages</a
               >
@@ -73,6 +75,7 @@ function pushWithQuery(query) {
             <li>
               <a
                 href="/profile"
+                :class="route.name == 'profile' ? 'active:bg-purple-800 active:text-white hover:text-purple-500 !text-white' : 'active:bg-purple-800 active:text-white hover:text-purple-500' "
                 class="active:bg-purple-800 active:text-white hover:text-purple-500"
                 >Profile</a
               >

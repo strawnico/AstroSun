@@ -1,6 +1,14 @@
 <script setup>
+import Input from "../components/Input.vue";
+import Button from "../components/Button.vue";
 </script>
 
 <template>
-  <h1>salve</h1>
+  <header></header>
+  <main class="herowpp flex">
+    <div class="p-4 bg-[#292039] border-b-2 border-[#565656] h-16 w-full">
+      <p class="text-white ml-0 lg:ml-3">Notifications</p>
+    </div>
+
+  </main>
 </template>
